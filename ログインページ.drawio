@@ -38,14 +38,14 @@
     </mxGraphModel>
   </diagram>
   <diagram name="ページ1のコピー" id="Hz5H3lQxeHk0yLyASqwj">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="2636" dy="623" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="W_hs6OSdxGVnvksAfRBb-0" />
         <mxCell id="W_hs6OSdxGVnvksAfRBb-1" parent="W_hs6OSdxGVnvksAfRBb-0" />
         <mxCell id="W_hs6OSdxGVnvksAfRBb-2" value="&lt;h1&gt;&lt;br&gt;&lt;/h1&gt;" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=mxgraph.basic.patternFillRect;fillStyle=diag;step=5;fillStrokeWidth=0.2;fillStrokeColor=#dddddd;fillColor=#dae8fc;strokeColor=#6c8ebf;labelPosition=center;align=center;" vertex="1" parent="W_hs6OSdxGVnvksAfRBb-1">
           <mxGeometry x="-1160" y="50" width="1140" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="W_hs6OSdxGVnvksAfRBb-3" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;" vertex="1" parent="W_hs6OSdxGVnvksAfRBb-1">
+        <mxCell id="W_hs6OSdxGVnvksAfRBb-3" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=3;size=20;indent=5;strokeColor=#FF3333;" vertex="1" parent="W_hs6OSdxGVnvksAfRBb-1">
           <mxGeometry x="-769" y="300" width="370" height="60" as="geometry" />
         </mxCell>
         <mxCell id="W_hs6OSdxGVnvksAfRBb-4" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;" vertex="1" parent="W_hs6OSdxGVnvksAfRBb-1">
