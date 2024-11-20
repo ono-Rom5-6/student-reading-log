@@ -661,7 +661,7 @@
           <mxGeometry x="-710" y="540" width="30" height="20" as="geometry" />
         </mxCell>
         <mxCell id="j9H36Q4KRk3-oBDqQTKi-7" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;①アカウント登録確認画面へ&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;②ひとつ前の画面へ&lt;/font&gt;&lt;/div&gt;" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;size=20;position=0.13;position2=0.08;base=28;" vertex="1" parent="j9H36Q4KRk3-oBDqQTKi-1">
-          <mxGeometry x="-650" y="510" width="240" height="70" as="geometry" />
+          <mxGeometry x="-650" y="490" width="240" height="70" as="geometry" />
         </mxCell>
         <mxCell id="j9H36Q4KRk3-oBDqQTKi-8" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;空欄不可、20文字以内&lt;/span&gt;" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;size=20;position=0.38;position2=0.33;" vertex="1" parent="j9H36Q4KRk3-oBDqQTKi-1">
           <mxGeometry x="-830" y="240" width="240" height="40" as="geometry" />
