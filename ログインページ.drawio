@@ -468,14 +468,17 @@
         <mxCell id="VIHHk8IZpn1VZOdwFe3B-4" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=5;strokeColor=#336600;" parent="VIHHk8IZpn1VZOdwFe3B-1" vertex="1">
           <mxGeometry x="-1120" y="150" width="1000" height="410" as="geometry" />
         </mxCell>
-        <mxCell id="MYCAvyU0qOeGP80bvzAA-0" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;①&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;" vertex="1" parent="VIHHk8IZpn1VZOdwFe3B-1">
+        <mxCell id="MYCAvyU0qOeGP80bvzAA-0" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;①&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;" parent="VIHHk8IZpn1VZOdwFe3B-1" vertex="1">
           <mxGeometry x="-782" y="482" width="30" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="kbdmM3WjW2SQVDr6zS8z-0" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;②&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;" vertex="1" parent="VIHHk8IZpn1VZOdwFe3B-1">
+        <mxCell id="kbdmM3WjW2SQVDr6zS8z-0" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;②&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;" parent="VIHHk8IZpn1VZOdwFe3B-1" vertex="1">
           <mxGeometry x="-721" y="482" width="30" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="NS-2YVkZ4vphOoyqAOIG-0" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;①更新確認画面へ&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;②ひとつ前の画面へ&lt;/font&gt;&lt;/div&gt;" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;size=20;position=0.09;position2=0.14;base=36;" vertex="1" parent="VIHHk8IZpn1VZOdwFe3B-1">
+        <mxCell id="NS-2YVkZ4vphOoyqAOIG-0" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;①更新確認画面へ&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;②ひとつ前の画面へ&lt;/font&gt;&lt;/div&gt;" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;size=20;position=0.09;position2=0.14;base=36;" parent="VIHHk8IZpn1VZOdwFe3B-1" vertex="1">
           <mxGeometry x="-700" y="442" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="OHmjbtLLC3LCU9DA8qlY-1" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;全ての項目に修正前の情報が&lt;/font&gt;&lt;div style=&quot;font-size: 16px;&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;書いてある状態のページにする&lt;/font&gt;&lt;/div&gt;" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;size=20;position=0.09;position2=0.14;base=36;" vertex="1" parent="VIHHk8IZpn1VZOdwFe3B-1">
+          <mxGeometry x="-660" y="230" width="290" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
