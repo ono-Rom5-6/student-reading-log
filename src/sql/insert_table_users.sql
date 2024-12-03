@@ -3,7 +3,7 @@ insert into `users` (
     `pass`,
     `student_number`,
     `name`,
-    `ahthority`
+    `authority`
 )
 values
 (
