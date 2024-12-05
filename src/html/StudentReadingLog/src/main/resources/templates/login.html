@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+
+	<title>ログイン</title>
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md" style="background-color: #e3f2fd;">
+		<span class="navbar-brand" th:text="#{reading.record.app}"></span>
+	</nav>
+
+	<div class="container">
+		<div class="row my-2">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-3">
+				<h1 th:text="#{login}"></h1>
+			</div>
+			<div class="col-sm-6"></div>
+		</div>
+		<!-- エラーメッセージ -->
+		<div class="row my-2" th:if="${session[SPRING_SECURITY_LAST_EXCEPTION]} != null">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6 alert alert-danger alert-dismissble fade show" >
+				<button class="close" data-dismiss="alert">&times;</button>
+				<div th:text="#{login.error}"></div>
+			</div>			
+			<div class="col-sm-3"></div>
+		</div>
+		<!-- ユーザー名、パスワード入力欄 -->
+		<div class="row my-2 justify-content-center">
+			<div class="col-sm-6">
+				<form th:action="@{/login}" method="post">
+					<div class="form-group">
+						<label for="user" th:text="#{user}"></label>
+						<input type="text" class="form-control" name="user">
+					</div>
+					<div class="form-group">
+						<label for="pass" th:text="#{pass}"></label>
+						<input type="password" class="form-control" name="pass">
+					</div>
+					<button type="submit" class="btn btn-primary" th:text="#{login}"></button>
+					<input type="hidden" th:name="${_csrf.parameterName}"
+					th:value="${_csrf.token}"/>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
