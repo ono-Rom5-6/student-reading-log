@@ -1,3 +1,4 @@
+//ログイン画面の表示
 package spring.readinglog.controller;
 
 import org.springframework.stereotype.Controller;

@@ -1,3 +1,4 @@
+//ユーザーネームからユーザーを取得する
 package spring.readinglog.domain.user.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;

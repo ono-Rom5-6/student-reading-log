@@ -1,3 +1,4 @@
+//ログインユーザーを取得する
 package spring.readinglog.domain.user.model;
 
 import java.util.ArrayList;
