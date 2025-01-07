@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}" lang="ja">
 
 <head>
 	<meta charset="UTF-8">
@@ -9,271 +10,135 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet">
+	<link rel="stylesheet" href="layout.css" >
 	<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
-	<title>検索結果一覧</title>
+	<title th:text="#{home}"></title>
 </head>
 
 <body>
-	<div class="container-md">
-		<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#">読書ログアプリ</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#">ホーム</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">読書メモ登録</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-								aria-expanded="false">
-								大阪太郎さん
-							</a>
-							<ul class="dropdown-menu">
-								<li>
-									<form class="dropdown-item" id="logout-form" th:action="@{/logout}" method="post">
-										<button type="submit" class="btn btn-link" th:text="#{logout}"></button>
-									</form>
-								</li>
-								<li>
-									<hr class="dropdown-divider">
-								</li>
-								<li><a class="dropdown-item" href="#">パスワード編集</a></li>
-							</ul>
-						</li>
-					</ul>
+	<div layout:fragment="content">
+		<div class="container-md">
+
+			<div class="row">
+				<div class="container-md col-8">
+					<!-- 検索フォーム -->
+					<h2 class="mt-2" th:text="${param.searchWord == null} ? #{list.memo} : #{search.result}"></h2>
+					<form class="d-flex" role="search">
+						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+							th:value="${param.searchWord}" name="searchWord" id="searchWord">
+						<button class="btn btn-outline-primary text-nowrap" type="submit" th:text="#{search}"></button>
+					</form>
+					<!-- 読書メモ一覧、検索結果一覧 -->
+					<table class="table table-striped table-hover table-bordered mt-2">
+						<thead>
+							<tr>
+								<th th:text="#{title}"></th>
+								<th th:text="#{author}"></th>
+								<th th:text="#{startingDate}"></th>
+								<th th:text="#{finishedDate}"></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<th:block th:each="record : ${readingRecordList}">
+								<th:block th:switch="true">
+									<!-- 読了日がnull -->
+									<tr th:case="${record.finishedDate == null}" class="table-warning">
+									<!--  それ以外 -->
+									<tr th:case="*">
+								</th:block>
+								<td th:text="${record.title}"></td>
+								<td th:text="${record.author}"></td>
+								<td th:text="${#dates.format(record.startingDate, 'yyyy-MM-dd')}"></td>
+								<td
+									th:text="${record.finishedDate == null}? #{now.reading} : ${#dates.format(record.finishedDate, 'yyyy-MM-dd')}">
+								</td>
+								<td class="align-middle button">
+									<a th:href="@{'reading-record/detail/' + ${record.id}}" class="btn btn-primary my-0" th:text="#{detail}"></a>
+									<a th:href="@{'/reading-record/finish/' + ${record.id}}" class="btn btn-success my-0" th:text="#{finish}"></a>
+								</td>
+								</tr>
+							</th:block>
+						</tbody>
+					</table>
 				</div>
-			</div>
-		</nav>
-		<div class="row">
-			<div class="container-md col-8">
-				<h2 class="mt-2">読書メモ一覧</h2>
-				<form class="d-flex" role="search">
-					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-primary" type="submit">Search</button>
-				</form>
-				<table class="table table-striped table-hover table-bordered mt-2">
-					<thead>
-						<tr>
-							<th>書名</th>
-							<th>著者名</th>
-							<th>読書開始日</th>
-							<th>読了日</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr class="table-warning">
-							<td>科学図鑑・ミミズの一生</td>
-							<td>〇〇〇〇</td>
-							<td>2023.06.01</td>
-							<td>読書中</td>
-							<td>
-								<button type="button" class="btn btn-success">読了</button>
-								<button type="button" class="btn btn-secondary">詳細</button>
-							</td>
-						</tr>
-						<tr>
-							<td>あしながおじさん</td>
-							<td>〇〇〇〇</td>
-							<td>2023.06.01</td>
-							<td>2023.06.01</td>
-							<td>
-								<button type="button" class="btn btn-success">読了</button>
-								<button type="button" class="btn btn-secondary">詳細</button>
-							</td>
-						</tr>
-						<tr>
-							<td>若草物語・上</td>
-							<td>〇〇〇〇</td>
-							<td>2023.06.01</td>
-							<td>2023.06.01</td>
-							<td>
-								<button type="button" class="btn btn-success">読了</button>
-								<button type="button" class="btn btn-secondary">詳細</button>
-							</td>
-						</tr>
-						<tr>
-							<td>若草物語・下</td>
-							<td>〇〇〇〇</td>
-							<td>2023.06.01</td>
-							<td>2023.06.01</td>
-							<td>
-								<button type="button" class="btn btn-success">読了</button>
-								<button type="button" class="btn btn-secondary">詳細</button>
-							</td>
-						</tr>
-						<tr>
-							<td>シャーロックホームズの冒険</td>
-							<td>〇〇〇〇</td>
-							<td>2023.06.01</td>
-							<td>2023.06.01</td>
-							<td>
-								<button type="button" class="btn btn-success">読了</button>
-								<button type="button" class="btn btn-secondary">詳細</button>
-							</td>
-						</tr>
-
-
-
-						<tr>
-							<td>塩のひみつ</td>
-							<td>〇〇〇〇</td>
-							<td>2023.05.01</td>
-							<td>2023.05.01</td>
-							<td>
-								<button type="button" class="btn btn-success">読了</button>
-								<button type="button" class="btn btn-secondary">詳細</button>
-							</td>
-						</tr>
-						<tr>
-							<td>伝記シリーズ・ベートーヴェン</td>
-							<td>〇〇〇〇</td>
-							<td>2023.05.01</td>
-							<td>2023.05.01</td>
-							<td>
-								<button type="button" class="btn btn-success">読了</button>
-								<button type="button" class="btn btn-secondary">詳細</button>
-							</td>
-						</tr>
-						<tr>
-							<td>よくわかる！ことわざ辞典</td>
-							<td>〇〇〇〇</td>
-							<td>2023.05.01</td>
-							<td>2023.05.01</td>
-							<td>
-								<button type="button" class="btn btn-success">読了</button>
-								<button type="button" class="btn btn-secondary">詳細</button>
-							</td>
-						</tr>
-						<tr>
-							<td>科学図鑑・トンボの一生</td>
-							<td>〇〇〇〇</td>
-							<td>2023.05.01</td>
-							<td>2023.05.01</td>
-							<td>
-								<button type="button" class="btn btn-success">読了</button>
-								<button type="button" class="btn btn-secondary">詳細</button>
-							</td>
-						</tr>
-						<tr>
-							<td>科学図鑑・ペンギンの一生</td>
-							<td>〇〇〇〇</td>
-							<td>2023.05.01</td>
-							<td>2023.05.01</td>
-							<td>
-								<button type="button" class="btn btn-success">読了</button>
-								<button type="button" class="btn btn-secondary">詳細</button>
-							</td>
-						</tr>
-						<tr>
-							<td>六角館の殺人</td>
-							<td>〇〇〇〇</td>
-							<td>2023.05.01</td>
-							<td>2023.05.01</td>
-							<td>
-								<button type="button" class="btn btn-success">読了</button>
-								<button type="button" class="btn btn-secondary">詳細</button>
-							</td>
-						</tr>
-						<tr>
-							<td>怪盗ルパン</td>
-							<td>〇〇〇〇</td>
-							<td>2023.05.01</td>
-							<td>2023.05.01</td>
-							<td>
-								<button type="button" class="btn btn-success">読了</button>
-								<button type="button" class="btn btn-secondary">詳細</button>
-							</td>
-						</tr>
-					</tbody>
-
-				</table>
-			</div>
-			<div class="text-center col-2 mt-2">
-				<div class="card text-bg-primary mb-3" style="max-width: 18rem;">
-					<div class="card-header">今月の読了冊数</div>
-					<div class="card-body">
-						<div class="card text-bg-light mb-3" style="max-width: 18rem;">
-							<div class="card-header">あなた</div>
-							<div class="card-body">
-								<h1 class="card-title">4<sup><i class="fas fa-star fa-xs"
-											style="color:lightblue;"></i></sup></h1>
-								<p class="card-text fw-light">今月のあなたの<br>読了冊数</p>
+				<!-- 読書データ -->
+				<div class="text-center col-2 mt-2">
+					<div class="card text-bg-primary mb-3 card-width">
+						<div class="card-header" th:text="|#{thisMonth's} #{numberOfBooksRead}|"></div>
+						<div class="card-body">
+							<div class="card text-bg-light mb-3 card-width">
+								<div class="card-header" th:text="#{you}"></div>
+								<div class="card-body">
+									<th:block th:switch="true">
+										<h1 th:case="${yourNumberOfBooksReadThisMonth == topNumberOfBooksReadThisMonth}"
+											class="card-title">
+											<span th:text="${yourNumberOfBooksReadThisMonth}"></span>
+											<sup><i class="fas fa-star fa-xs star"></i></sup>
+										</h1>
+										<h1 th:case="*" class="card-title" th:text="${yourNumberOfBooksReadThisMonth}">
+										</h1>
+									</th:block>
+									<p class="card-text fw-light"><span th:text="|#{thisMonth's} #{your}|"></span><br><span th:text="#{numberOfBooksRead}"></span></p>
+								</div>
+							</div>
+							<div class="card text-bg-light mb-3 card-width">
+								<div class="card-header" th:text="|#{class} #{average}|"></div>
+								<div class="card-body">
+									<h1 class="card-title" th:text="${averageNumberOfBooksReadThisMonth}"></h1>
+									<p class="card-text fw-light"><span th:text="|#{thisMonth's} #{class}|"></span><br><span th:text="|#{average} #{numberOfBooksRead}|"></span></p>
+								</div>
+							</div>
+							<div class="card text-bg-light mb-3 card-width">
+								<div class="card-header" th:text="|#{class} #{top}|"></div>
+								<div class="card-body">
+									<h1 class="card-title" th:text="${topNumberOfBooksReadThisMonth}"></h1>
+									<p class="card-text fw-light" ><span th:text="|#{thisMonth's} #{class}|"></span><br><span th:text="|#{top} #{numberOfBooksRead}|"></span></p>
+								</div>
 							</div>
 						</div>
-						<div class="card text-bg-light mb-3" style="max-width: 18rem;">
-							<div class="card-header">クラス平均</div>
-							<div class="card-body">
-								<h1 class="card-title">2.6</h1>
-								<p class="card-text fw-light">今月のクラスの<br>平均読了冊数</p>
+					</div>
+				</div>
+				<div class="text-center col-2 mt-2">
+					<div class="card text-bg-success mb-3 card-width">
+						<div class="card-header" th:text="|#{lastMonth's} #{numberOfBooksRead}|"></div>
+						<div class="card-body">
+							<div class="card text-bg-light mb-3" style="max-width: 18rem;">
+								<div class="card-header" th:text="#{you}"></div>
+								<div class="card-body">
+									<th:block th:switch="true">
+										<h1 th:case="${yourNumberOfBooksReadLastMonth == topNumberOfBooksReadLastMonth}"
+											class="card-title">
+											<span th:text="${yourNumberOfBooksReadLastMonth}"></span>
+											<sup><i class="fas fa-star fa-xs star"></i></sup>
+										</h1>
+										<h1 th:case="*" class="card-title" th:text="${yourNumberOfBooksReadLastMonth}">
+										</h1>
+									</th:block>
+									<p class="card-text fw-light"><span th:text="|#{lastMonth's} #{your}|"></span><br><span th:text="#{numberOfBooksRead}"></span></p>
+								</div>
 							</div>
-						</div>
-						<div class="card text-bg-light mb-3" style="max-width: 18rem;">
-							<div class="card-header">クラストップ</div>
-							<div class="card-body">
-								<h1 class="card-title">4</h1>
-								<p class="card-text fw-light">今月のクラスの<br>最高読了冊数</p>
+							<div class="card text-bg-light mb-3 card-width">
+								<div class="card-header" th:text="|#{class} #{average}|"></div>
+								<div class="card-body">
+									<h1 class="card-title" th:text="${averageNumberOfBooksReadLastMonth}"></h1>
+									<p class="card-text fw-light"><span th:text="|#{lastMonth's} #{class}|"></span><br><span th:text="|#{average} #{numberOfBooksRead}|"></span></p>
+								</div>
+							</div>
+							<div class="card text-bg-light mb-3 card-width">
+								<div class="card-header" th:text="|#{class} #{top}|"></div>
+								<div class="card-body">
+									<h1 class="card-title" th:text="${topNumberOfBooksReadLastMonth}"></h1>
+									<p class="card-text fw-light"><span th:text="|#{lastMonth's} #{class}|"></span><br><span th:text="|#{top} #{numberOfBooksRead}|"></span></p>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="text-center col-2 mt-2">
-				<div class="card text-bg-success mb-3" style="max-width: 18rem;">
-					<div class="card-header">先月の読了冊数</div>
-					<div class="card-body">
-						<div class="card text-bg-light mb-3" style="max-width: 18rem;">
-							<div class="card-header">あなた</div>
-							<div class="card-body">
-								<h1 class="card-title">6</h1>
-								<p class="card-text fw-light">先月のあなたの<br>読了冊数</p>
-							</div>
-						</div>
-						<div class="card text-bg-light mb-3" style="max-width: 18rem;">
-							<div class="card-header">クラス平均</div>
-							<div class="card-body">
-								<h1 class="card-title">3.2</h1>
-								<p class="card-text fw-light">先月のクラスの<br>平均読了冊数</p>
-							</div>
-						</div>
-						<div class="card text-bg-light mb-3" style="max-width: 18rem;">
-							<div class="card-header">クラストップ</div>
-							<div class="card-body">
-								<h1 class="card-title">15</h1>
-								<p class="card-text fw-light">先月のクラスの<br>最高読了冊数</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-			</div>
-
 		</div>
-
-
-
-
-
 	</div>
-
-
-
-
-
-
-
-
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dFist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 		crossorigin="anonymous"></script>
 </body>

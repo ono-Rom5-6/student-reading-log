@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="layout.css" >
+
+	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+
+	<title th:text="#{error}"></title>
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark background">
+		<span class="navbar-brand" th:text="#{reading.record.app}"></span>
+	</nav>
+	<h1 th:text="${status} + '' + ${error}"></h1>
+	<a href="/login" class="btn btn-success my-0" th:text="#{back.login}"></a>
+	<a href="#" onclick="history.back(); return false;" class="btn btn-outline-primary" th:text="#{back.before}"></a>
+</body>
+</html>

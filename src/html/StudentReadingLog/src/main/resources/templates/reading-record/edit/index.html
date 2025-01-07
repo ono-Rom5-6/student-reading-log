@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}" lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" th:href="@{../../css/layout.css}">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet">
+	<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+	<title th:text="#{edit.memo}"></title>
+</head>
+
+<body>
+	<div layout:fragment="content" class="container-md">
+
+		<div class="row g-3">
+			<div class="container-md col-12 mt-2">
+				<h2 class="mt-2" th:text="#{edit.memo}"></h2>
+			</div>
+
+
+
+		</div>
+		<form th:action="@{/reading-record/edit/index}" method="post" th:object="${editForm}" class="row g-3">
+			<div class="col-12">
+				<label for="inputAddress" class="form-label" th:text="#{title}"></label>
+				<input type="text" class="form-control" th:field="*{title}" th:errorclass="is-invalid" />
+				<div class="invalid-feedback" th:errors="*{title}"></div>
+			</div>
+			<div class="col-md-4">
+				<label for="inputAddress2" class="form-label" th:text="#{author}"></label>
+				<input type="text" class="form-control" th:field="*{author}" th:errorclass="is-invalid" />
+				<div class="invalid-feedback" th:errors="*{author}"></div>
+			</div>
+			<div class="col-md-4">
+				<label for="inputEmail4" class="form-label" th:text="#{startingDate}"></label>
+				<input type="date" class="form-control" th:field="*{startingDate}" th:errorclass="is-invalid" />
+				<div class="invalid-feedback" th:errors="*{startingDate}"></div>
+			</div>
+			<div class="col-md-4">
+				<label for="inputPassword4" class="form-label" th:text="#{finishedDate}"></label>
+				<input type="date" class="form-control" th:field="*{finishedDate}" th:errorclass="is-invalid" />
+				<div class="invalid-feedback" th:errors="*{finishedDate}"></div>
+			</div>
+			<div class="col-12">
+				<label for="inputAddress" class="form-label" th:text="#{memos}"></label>
+				<textarea class="form-control" th:field="*{memos}" th:errorclass="is-invalid"></textarea>
+				<div class="invalid-feedback" th:errors="*{memos}"></div>
+			</div>
+
+			<input type="hidden" th:field="*{id}">
+			<input type="hidden" name="userId" th:value="${#authentication.principal.loginUser.id}">
+			<div class="col-4"></div>
+			<div class="col-4">
+				<input type="submit" th:value="#{confirm}" class="btn btn-primary">
+				<a th:href="@{'../detail/' + *{id}}" class="btn btn-outline-primary" th:text="#{cancel}"></a>
+				<!--
+				<a href="../../home" class="btn btn-outline-primary" th:text="#{back.home}"></a>
+				-->
+			</div>
+		</form>
+
+
+
+	</div>
+</body>
+
+</html>

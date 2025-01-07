@@ -20,24 +20,19 @@
 		where user = #{user}
 	</select>
 	
-	
-	
-	
-	
-	<!-- 
-	<select id="findUserList" resultType="User">
+	<select id="findPasswordByName" parameterType="String" resultType="String">
 		select
-		*
+		pass
 		from
 		users
+		where user = #{user}
 	</select>
 	
-	<select id="countById" resultType="boolean">
-		select
-		count(*)
-		from
+	<update id="updatePass">
+		update
 		users
-		where id = #{id}
-	</select>
-	 -->
+		set
+		pass = #{pass}
+		where user = #{user}
+	</update>
 </mapper>

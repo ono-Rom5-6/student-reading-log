@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.readinglog.repository.ReadingRecordMapper">
+	<resultMap type="spring.readinglog.domain.readingrecord.model.ReadingRecord" id="readingRecord">
+		<id column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="title" property="title" />
+		<result column="author" property="author" />
+		<result column="starting_date" property="startingDate" />
+		<result column="finished_date" property="finishedDate" />
+		<result column="memos" property="memos" />
+	</resultMap>
+	
+	<insert id="insertReadingRecord" parameterType="ReadingRecord">
+		insert into reading_records(
+		user_id,
+		title,
+		author,
+		starting_date,
+		finished_date,
+		memos
+		)
+		values(
+		#{userId},
+		#{title},
+		#{author},
+		#{startingDate},
+		#{finishedDate},
+		#{memos}
+		)
+	</insert>
+	
+	<select id="selectManyReadingRecord" resultType="ReadingRecord">
+		select
+		*
+		from
+		reading_records
+		where user_id = #{userId}
+	<if test="searchWord != null">
+		and
+		(
+		title like concat('%', #{searchWord}, '%')
+		or
+		author like concat('%', #{searchWord}, '%')
+		)
+	</if>
+		order
+		by
+		starting_date
+		desc
+	</select>
+	
+	<select id="selectOne" parameterType="String" resultType="ReadingRecord">
+		select
+		*
+		from
+		reading_records
+		where id = #{id}
+	</select>
+	
+	<update id="updateFinishedDate">
+		update
+		reading_records
+		set
+		finished_date = #{today}
+		where id = #{id}
+	
+	</update>
+	
+	<update id="updateReadingRecord">
+		update
+		reading_records
+		set
+		title = #{title},
+		author = #{author},
+		starting_date = #{startingDate},
+		finished_date = #{finishedDate},
+		memos = #{memos}
+		where id = #{id}
+	</update>
+	
+	<select id="selectYourNumberOfBooksReadThisMonth" parameterType="String" resultType="String">
+		select
+		count(
+		user_id = #{userId}
+		and
+		finished_date
+		between date_format(curdate(), '%Y-%m-01')
+		and
+		curdate()
+		or null
+		)
+		from
+		reading_records;
+	</select>
+	
+	<select id="selectAverageNumberOfBooksReadThisMonth">
+		select
+		round(
+		count(
+			finished_date
+			between date_format(curdate(), '%Y-%m-01')
+			and
+			curdate()
+			or null
+			)
+		/
+		count(
+			distinct
+			user_id
+			)
+		,1
+		)
+		from
+		reading_records
+		;
+	</select>
+	
+	
+	<select id="selectTopNumberOfBooksReadThisMonth">
+		select
+		count(
+		finished_date
+				between date_format(curdate(), '%Y-%m-01')
+				and
+				curdate()
+				or null
+		)as 'top'
+		from
+		reading_records
+		group by user_id
+		order by
+		top
+		desc
+		limit 1;
+	</select>
+	
+	
+	
+	<select id="selectYourNumberOfBooksReadLastMonth">
+		select
+		count(
+		user_id = #{userId}
+		and
+		date_format(finished_date, '%Y-%m')
+		= date_format(curdate() - interval 1 month, '%Y-%m')
+		or null
+		)
+		from
+		reading_records;	
+	</select>
+	
+	<select id="selectAverageNumberOfBooksReadLastMonth">
+		select
+		round(
+		count(
+			date_format(finished_date, '%Y-%m')
+			= date_format(curdate() - interval 1 month, '%Y-%m')
+			or null
+			)
+		/
+		count(
+			distinct
+			user_id
+		)
+		,1
+		)
+		from
+		reading_records
+		;
+	</select>
+	
+	<select id="selectTopNumberOfBooksReadLastMonth">
+		select
+		count(
+			date_format(finished_date, '%Y-%m')
+			= date_format(curdate() - interval 1 month, '%Y-%m')
+			or null
+		)as 'top'
+		from
+		reading_records
+		group by user_id
+		order by
+		top
+		desc
+		limit 1;
+	</select>
+</mapper>

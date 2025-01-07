@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net..nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+
+<head>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<link rel="stylesheet" th:href="@{../css/layout.css}">
+</head>
+
+<body>
+	<nav layout:fragment="header" class="navbar navbar-expand-lg background">
+		<div class="container-fluid">
+			<p class="navbar-brand" th:text="#{reading.record.app}"></p>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" th:classappend="${title?.equals('home')} ? 'active' : ''" aria-current="page" href="/home" th:text="#{home}"></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:classappend="${title?.equals('entry')} ? 'active' : ''" href="/reading-record/entry/index" th:text="#{entry.memo}"></a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${#authentication.principal.loginUser.name}">
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<form class="dropdown-item" id="logout-form" th:action="@{/logout}" method="post">
+									<button type="submit" class="btn btn-link" th:text="#{logout}"></button>
+								</form>
+							</li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li><a class="dropdown-item" href="/change-password/index" th:text="#{edit.password}"></a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</body>
+
+</html>
