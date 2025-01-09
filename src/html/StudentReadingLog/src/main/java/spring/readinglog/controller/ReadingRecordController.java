@@ -65,15 +65,6 @@ public class ReadingRecordController {
 		return "reading-record/entry/finish";
 	}
 	
-	/*
-	@GetMapping("/finish/{id}")
-	public String getFinish(Model model, @PathVariable String id) {
-		Date today = new Date();
-		readingRecordService.finishReading(id, today);
-		return "redirect:../../home";
-	}
-	*/
-	
 	@GetMapping("/detail/{id}")
 	public String getDetail(Model model, @PathVariable String id) {
 		ReadingRecord readingRecord = readingRecordService.getReadingRecord(id);
