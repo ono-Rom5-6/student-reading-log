@@ -3,7 +3,8 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="spring.readinglog.repository.UserMapper">
-	<resultMap type="spring.readinglog.domain.user.model.User" id="user">
+	<resultMap type="spring.readinglog.domain.user.model.User"
+		id="user">
 		<id column="id" property="id" />
 		<result column="user" property="user" />
 		<result column="pass" property="pass" />
@@ -11,23 +12,34 @@
 		<result column="name" property="name" />
 		<result column="authority" property="authority" />
 	</resultMap>
-	
-	<select id="findLoginUser" parameterType="String" resultMap="user">
+
+	<resultMap
+		type="spring.readinglog.domain.user.model.ClassMember"
+		id="classMember">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="numberOfBooksReadThisMonth"
+			property="numberOfBooksReadThisMonth" />
+	</resultMap>
+
+	<select id="findLoginUser" parameterType="String"
+		resultMap="user">
 		select
 		*
 		from
 		users
 		where user = #{user}
 	</select>
-	
-	<select id="findPasswordByName" parameterType="String" resultType="String">
+
+	<select id="findPasswordByName" parameterType="String"
+		resultType="String">
 		select
 		pass
 		from
 		users
 		where user = #{user}
 	</select>
-	
+
 	<update id="updatePass">
 		update
 		users
@@ -35,4 +47,20 @@
 		pass = #{pass}
 		where user = #{user}
 	</update>
+
+	<select id="selectClassMemberList"
+		resultMap="classMember">
+		select
+		users.id, users.name, count(reading_records.user_id) as
+		numberOfBooksReadThisMonth
+		from
+		users
+		left join reading_records
+		on users.id = reading_records.user_id
+		where reading_records.finished_date between date_format(curdate(),
+		'%Y-%m-01') and curdate()
+		group by reading_records.user_id
+	</select>
+	<!-- <collecition property="readingRecordList" resultMap="readingRecord" 
+		/> -->
 </mapper>

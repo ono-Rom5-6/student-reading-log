@@ -60,15 +60,16 @@
 		where id = #{id}
 	</select>
 	
+	<!-- 
 	<update id="updateFinishedDate">
 		update
 		reading_records
 		set
 		finished_date = #{today}
 		where id = #{id}
-	
 	</update>
-	
+	 -->
+	 
 	<update id="updateReadingRecord">
 		update
 		reading_records
@@ -187,4 +188,22 @@
 		desc
 		limit 1;
 	</select>
+	
+	
+	
+	<!-- 
+	
+	SELECT gender, COUNT(gender) FROM staffs GROUP BY gender;
+	
+	select
+	users.id, users.name, count(reading_records.user_id) as numberOfBooksReadThisMonth
+	from
+	users
+	left join reading_records
+	on users.id = reading_records.user_id
+	where reading_records.finished_date between date_format(curdate(), '%Y-%m-01') and curdate()
+	group by reading_records.user_id
+	
+	 -->
+	 
 </mapper>

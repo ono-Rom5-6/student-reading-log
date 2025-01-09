@@ -1,10 +1,13 @@
 //ログイン処理、パスワード変更処理
 package spring.readinglog.domain.user.service.impl;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import spring.readinglog.domain.user.model.ClassMember;
 import spring.readinglog.domain.user.model.User;
 import spring.readinglog.domain.user.service.UserService;
 import spring.readinglog.repository.UserMapper;
@@ -33,5 +36,9 @@ public class UserServiceImpl implements UserService {
         userMapper.updatePass(username, hashedPassword);
     }
 	
-	
+	@Override
+	public ArrayList<ClassMember> getClassMemberList() {
+		return userMapper.selectClassMemberList();
+		
+	}
 }

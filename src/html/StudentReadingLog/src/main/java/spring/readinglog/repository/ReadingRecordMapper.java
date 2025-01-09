@@ -1,6 +1,5 @@
 package spring.readinglog.repository;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -16,7 +15,7 @@ public interface ReadingRecordMapper {
 	
 	public ReadingRecord selectOne(String id);
 	
-	public void updateFinishedDate(@Param("id") String id, @Param("today") Date today);
+	//public void updateFinishedDate(@Param("id") String id, @Param("today") Date today);
 	
 	public void updateReadingRecord(ReadingRecord readingRecord);
 	

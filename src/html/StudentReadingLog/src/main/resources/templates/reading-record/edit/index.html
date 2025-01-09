@@ -55,8 +55,8 @@
 
 			<input type="hidden" th:field="*{id}">
 			<input type="hidden" name="userId" th:value="${#authentication.principal.loginUser.id}">
-			<div class="col-4"></div>
-			<div class="col-4">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
 				<input type="submit" th:value="#{confirm}" class="btn btn-primary">
 				<a th:href="@{'../detail/' + *{id}}" class="btn btn-outline-primary" th:text="#{cancel}"></a>
 				<!--

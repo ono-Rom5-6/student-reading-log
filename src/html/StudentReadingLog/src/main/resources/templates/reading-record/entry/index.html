@@ -30,7 +30,6 @@
 				<label for="inputAddress" class="form-label" th:text="#{title}"></label>
 				<input type="text" class="form-control" th:field="*{title}" th:errorclass="is-invalid" />
 				<div class="invalid-feedback" th:errors="*{title}"></div>
-
 			</div>
 			<div class="col-md-4">
 				<label for="inputAddress2" class="form-label" th:text="#{author}"></label>
@@ -56,16 +55,12 @@
 
 			<input type="hidden" name="userId" th:value="${#authentication.principal.loginUser.id}">
 
-			<div class="col-4"></div>
-
-
-			<div class="col-4">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
 				<input type="submit" th:value="#{confirm}" class="btn btn-primary">
 				<!-- フォームの再送信になるのが気になって『戻る』のはやめました。
 				　　　フォームの再送信になってしまってもよいのでしょうか？ -->
 				<a href="/home" class="btn btn-success" th:text="#{back.home}"></a>
-				
-				
 			</div>
 		</form>
 

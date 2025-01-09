@@ -1,8 +1,6 @@
 //読書メモ登録、読了機能、詳細表示、編集
 package spring.readinglog.controller;
 
-import java.util.Date;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -67,12 +65,14 @@ public class ReadingRecordController {
 		return "reading-record/entry/finish";
 	}
 	
+	/*
 	@GetMapping("/finish/{id}")
 	public String getFinish(Model model, @PathVariable String id) {
 		Date today = new Date();
 		readingRecordService.finishReading(id, today);
 		return "redirect:../../home";
 	}
+	*/
 	
 	@GetMapping("/detail/{id}")
 	public String getDetail(Model model, @PathVariable String id) {

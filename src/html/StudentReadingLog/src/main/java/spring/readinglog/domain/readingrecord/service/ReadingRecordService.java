@@ -2,7 +2,6 @@
 //また読書データの取得を行う
 package spring.readinglog.domain.readingrecord.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ public interface ReadingRecordService {
 	
 	public ReadingRecord getReadingRecord(String id);
 	
-	public void finishReading(String id, Date today);
+	//public void finishReading(String id, Date today);
 	
 	public void editReadingRecord(ReadingRecord readingRecord);
 	

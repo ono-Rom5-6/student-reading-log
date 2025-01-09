@@ -2,7 +2,6 @@
 //また読書データの取得を行う
 package spring.readinglog.domain.readingrecord.service.impl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +33,12 @@ public class ReadingRecordServiceImpl implements ReadingRecordService{
 		return readingRecordMapper.selectOne(id);
 	}
 	
+	/*
 	@Override
 	public void finishReading(String id, Date today) {
 		readingRecordMapper.updateFinishedDate(id, today);
 	}
+	*/
 	
 	@Override
 	public void editReadingRecord(ReadingRecord readingRecord) {

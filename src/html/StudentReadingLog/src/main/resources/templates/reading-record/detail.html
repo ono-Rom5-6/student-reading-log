@@ -45,9 +45,9 @@
 					<textarea class="form-control" th:field="*{memos}"></textarea>
 				</div>
 				<input type="hidden" name="userId" th:value="${#authentication.principal.loginUser.id}">
-				<div class="col-4"></div>
+				<div class="col-md-4"></div>
 			</fieldset>
-			<div class="col-4">
+			<div class="col-md-4">
 				<input type="submit" th:value="#{edit}" class="btn btn-primary">
 				<a href="../../home" class="btn btn-success"　th:text="#{back.home}"></a>
 			</div>

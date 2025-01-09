@@ -1,8 +1,11 @@
 package spring.readinglog.repository;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.data.repository.query.Param;
 
+import spring.readinglog.domain.user.model.ClassMember;
 import spring.readinglog.domain.user.model.User;
 
 @Mapper
@@ -12,5 +15,7 @@ public interface UserMapper {
 	public String findPasswordByName(@Param("user") String user);
 	
 	public void updatePass(@Param("user") String user, @Param("pass") String pass);
+	
+	public ArrayList<ClassMember> selectClassMemberList();
 	
 }
