@@ -16,8 +16,6 @@ public interface ReadingRecordService {
 	
 	public ReadingRecord getReadingRecord(String id);
 	
-	//public void finishReading(String id, Date today);
-	
 	public void editReadingRecord(ReadingRecord readingRecord);
 	
 	//以下、読書データを取得する

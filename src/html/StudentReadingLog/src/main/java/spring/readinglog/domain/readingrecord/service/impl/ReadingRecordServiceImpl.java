@@ -33,13 +33,6 @@ public class ReadingRecordServiceImpl implements ReadingRecordService{
 		return readingRecordMapper.selectOne(id);
 	}
 	
-	/*
-	@Override
-	public void finishReading(String id, Date today) {
-		readingRecordMapper.updateFinishedDate(id, today);
-	}
-	*/
-	
 	@Override
 	public void editReadingRecord(ReadingRecord readingRecord) {
 		readingRecordMapper.updateReadingRecord(readingRecord);

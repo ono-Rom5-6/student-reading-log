@@ -15,8 +15,6 @@ public interface ReadingRecordMapper {
 	
 	public ReadingRecord selectOne(String id);
 	
-	//public void updateFinishedDate(@Param("id") String id, @Param("today") Date today);
-	
 	public void updateReadingRecord(ReadingRecord readingRecord);
 	
 	public String selectYourNumberOfBooksReadThisMonth(String userId);

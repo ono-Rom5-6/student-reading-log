@@ -25,42 +25,46 @@
 	<select id="findLoginUser" parameterType="String"
 		resultMap="user">
 		select
-		*
+			*
 		from
-		users
-		where user = #{user}
+			users
+			where user = #{user}
 	</select>
 
 	<select id="findPasswordByName" parameterType="String"
 		resultType="String">
 		select
-		pass
+			pass
 		from
-		users
-		where user = #{user}
+			users
+			where user = #{user}
 	</select>
 
 	<update id="updatePass">
 		update
-		users
+			users
 		set
-		pass = #{pass}
-		where user = #{user}
+			pass = #{pass}
+			where user = #{user}
 	</update>
 
 	<select id="selectClassMemberList"
 		resultMap="classMember">
 		select
-		users.id, users.name, count(reading_records.user_id) as
-		numberOfBooksReadThisMonth
+			users.id, users.name, count(reading_records.user_id) as
+			numberOfBooksReadThisMonth
 		from
-		users
-		left join reading_records
-		on users.id = reading_records.user_id
-		where reading_records.finished_date between date_format(curdate(),
-		'%Y-%m-01') and curdate()
+			users
+		left join
+			reading_records
+		on
+			users.id = reading_records.user_id
+		where
+			reading_records.finished_date
+		between
+			date_format(curdate(),'%Y-%m-01')
+		and
+			curdate()
 		group by reading_records.user_id
 	</select>
-	<!-- <collecition property="readingRecordList" resultMap="readingRecord" 
-		/> -->
 </mapper>

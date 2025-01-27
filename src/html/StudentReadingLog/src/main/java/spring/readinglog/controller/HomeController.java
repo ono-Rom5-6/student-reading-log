@@ -14,8 +14,6 @@ import spring.readinglog.domain.readingrecord.model.ReadingRecord;
 import spring.readinglog.domain.readingrecord.service.ReadingRecordService;
 import spring.readinglog.domain.user.model.LoginUserDetails;
 
-
-
 @Controller
 public class HomeController {
 	@Autowired
@@ -41,6 +39,11 @@ public class HomeController {
 		return "home";
 	}
 	
+	@GetMapping("/")
+	public String getRoute() {
+		return "redirect:home";
+	}
+
 	
 
 }
