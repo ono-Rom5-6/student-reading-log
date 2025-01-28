@@ -76,6 +76,10 @@ public class ReadingRecordController {
 	public String getDetail(Model model, @PathVariable String id,
 			@AuthenticationPrincipal LoginUserDetails loginUserDetails) {
 		ReadingRecord readingRecord = readingRecordService.getReadingRecord(id);
+		if(readingRecord ==null) {
+			set404error(model);
+			return "error";
+		}
 
 		if(mismatchUserId(readingRecord, loginUserDetails)) {
 			set403error(model);
@@ -87,8 +91,13 @@ public class ReadingRecordController {
 	}
 
 	@GetMapping("/edit/{id}")
-	public String getEdit(Model model, @PathVariable String id, EditForm editForm,@AuthenticationPrincipal LoginUserDetails loginUserDetails) {
+	public String getEdit(Model model, @PathVariable String id, EditForm editForm, @AuthenticationPrincipal LoginUserDetails loginUserDetails) {
 		ReadingRecord readingRecord = readingRecordService.getReadingRecord(id);
+		if(readingRecord ==null) {
+			set404error(model);
+			return "error";
+		}
+		
 		if(mismatchUserId(readingRecord, loginUserDetails)) {
 			set403error(model);
 			return "error";
@@ -155,6 +164,12 @@ public class ReadingRecordController {
 		model.addAttribute("error", " ");
 		model.addAttribute("message", "Exceptionが発生しました");
 		model.addAttribute("status", HttpStatus.FORBIDDEN);
+	}
+	
+	public void set404error(Model model) {
+		model.addAttribute("error", " ");
+		model.addAttribute("message", "Exceptionが発生しました");
+		model.addAttribute("status", HttpStatus.NOT_FOUND);
 	}
 	
 

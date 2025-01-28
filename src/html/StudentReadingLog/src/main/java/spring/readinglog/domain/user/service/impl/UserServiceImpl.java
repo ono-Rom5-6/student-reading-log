@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import spring.readinglog.domain.user.model.ClassMember;
+import spring.readinglog.domain.user.model.Member;
 import spring.readinglog.domain.user.model.User;
 import spring.readinglog.domain.user.service.UserService;
 import spring.readinglog.repository.UserMapper;
@@ -37,8 +37,8 @@ public class UserServiceImpl implements UserService {
     }
 	
 	@Override
-	public ArrayList<ClassMember> getClassMemberList() {
-		return userMapper.selectClassMemberList();
+	public ArrayList<Member> getMemberList() {
+		return userMapper.selectMemberList();
 		
 	}
 }

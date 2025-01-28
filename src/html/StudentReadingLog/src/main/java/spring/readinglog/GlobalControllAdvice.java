@@ -12,21 +12,22 @@ public class GlobalControllAdvice {
 	@ExceptionHandler(DataAccessException.class)
 	public String dataAccessExceptionHandler(DataAccessException e, Model model) {
 		model.addAttribute("error", " ");
-		
+
 		model.addAttribute("message", "DataAccessExceptionが発生しました");
-		
+
 		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR);
-		
+
 		return "error";
 	}
+
 	@ExceptionHandler(Exception.class)
 	public String exceptionHandler(Exception e, Model model) {
 		model.addAttribute("error", " ");
-		
+
 		model.addAttribute("message", "Exceptionが発生しました");
-		
+
 		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR);
-		
+
 		return "error";
 	}
 

@@ -4,12 +4,10 @@ package spring.readinglog.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import spring.readinglog.domain.user.service.UserService;
-import spring.readinglog.form.password.ChangePasswordForm;
 
 @Controller
 @RequestMapping("/class")
@@ -19,11 +17,11 @@ public class ClassController {
 	private UserService userService;
 	
 	@GetMapping
-	public String get(Model model, ChangePasswordForm form, BindingResult bindingResult) {
-		model.addAttribute("classMemberList", userService.getClassMemberList());
+	public String get(Model model) {
+		model.addAttribute("memberList", userService.getMemberList());
 		
-		model.addAttribute("title", "class");
-		return "class";
+		model.addAttribute("title", "member");
+		return "member";
 	}
 
 }

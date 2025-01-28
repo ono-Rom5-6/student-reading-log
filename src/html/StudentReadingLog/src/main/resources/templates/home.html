@@ -69,7 +69,7 @@
 											class="card-title">
 											<span th:text="${yourNumberOfBooksReadThisMonth}" data-bs-toggle="tooltip"
 												th:title="|#{thisMonth's}#{your}#{numberOfBooksRead}|"></span>
-											<sup data-bs-toggle="tooltip" th:title="|#{class}#{top}|"><i class="fas fa-star fa-xs star"></i></sup>
+											<sup data-bs-toggle="tooltip" th:title="|#{top}|"><i class="fas fa-star fa-xs star"></i></sup>
 										</h1>
 										<h1 th:case="*" class="card-title" th:text="${yourNumberOfBooksReadThisMonth}" data-bs-toggle="tooltip" th:title="|#{thisMonth's}#{your}#{numberOfBooksRead}|">
 										</h1>
@@ -77,15 +77,15 @@
 								</div>
 							</div>
 							<div class="card text-bg-light mb-3 card-width">
-								<div class="card-header" th:text="|#{class} #{average}|"></div>
+								<div class="card-header" th:text="|#{member}#{average}|"></div>
 								<div class="card-body">
-									<h1 class="card-title" th:text="${averageNumberOfBooksReadThisMonth}" data-bs-toggle="tooltip" th:title="|#{thisMonth's}#{class}#{average}#{numberOfBooksRead}|"></h1>
+									<h1 class="card-title" th:text="${averageNumberOfBooksReadThisMonth}" data-bs-toggle="tooltip" th:title="|#{thisMonth's}#{member}#{average}#{numberOfBooksRead}|"></h1>
 								</div>
 							</div>
 							<div class="card text-bg-light mb-3 card-width">
-								<div class="card-header" th:text="|#{class} #{top}|"></div>
+								<div class="card-header" th:text="|#{top}|"></div>
 								<div class="card-body">
-									<h1 class="card-title" th:text="${topNumberOfBooksReadThisMonth}" data-bs-toggle="tooltip" th:title="|#{thisMonth's}#{class}#{top}#{numberOfBooksRead}|"></h1>
+									<h1 class="card-title" th:text="${topNumberOfBooksReadThisMonth}" data-bs-toggle="tooltip" th:title="|#{thisMonth's}#{top}#{numberOfBooksRead}|"></h1>
 								</div>
 							</div>
 						</div>
@@ -102,7 +102,7 @@
 										<h1 th:case="${yourNumberOfBooksReadLastMonth == topNumberOfBooksReadLastMonth} and ${yourNumberOfBooksReadLastMonth} != 0"
 											class="card-title">
 											<span th:text="${yourNumberOfBooksReadLastMonth}" data-bs-toggle="tooltip" th:title="|#{lastMonth's}#{your}#{numberOfBooksRead}|"></span>
-											<sup  data-bs-toggle="tooltip" th:title="|#{class}#{top}|"><i class="fas fa-star fa-xs star"></i></sup>
+											<sup  data-bs-toggle="tooltip" th:title="|#{top}|"><i class="fas fa-star fa-xs star"></i></sup>
 										</h1>
 										<h1 th:case="*" class="card-title" th:text="${yourNumberOfBooksReadLastMonth}" data-bs-toggle="tooltip" th:title="|#{lastMonth's}#{your}#{numberOfBooksRead}|">
 										</h1>
@@ -110,15 +110,15 @@
 								</div>
 							</div>
 							<div class="card text-bg-light mb-3 card-width">
-								<div class="card-header" th:text="|#{class} #{average}|"></div>
+								<div class="card-header" th:text="|#{member}#{average}|"></div>
 								<div class="card-body">
-									<h1 class="card-title" th:text="${averageNumberOfBooksReadLastMonth}" data-bs-toggle="tooltip" th:title="|#{lastMonth's}#{class}#{average}#{numberOfBooksRead}|"></h1>
+									<h1 class="card-title" th:text="${averageNumberOfBooksReadLastMonth}" data-bs-toggle="tooltip" th:title="|#{lastMonth's}#{member}#{average}#{numberOfBooksRead}|"></h1>
 								</div>
 							</div>
 							<div class="card text-bg-light mb-3 card-width">
-								<div class="card-header" th:text="|#{class} #{top}|"></div>
+								<div class="card-header" th:text="|#{top}|"></div>
 								<div class="card-body">
-									<h1 class="card-title" th:text="${topNumberOfBooksReadLastMonth}" data-bs-toggle="tooltip" th:title="|#{lastMonth's}#{class}#{top}#{numberOfBooksRead}|"></h1>
+									<h1 class="card-title" th:text="${topNumberOfBooksReadLastMonth}" data-bs-toggle="tooltip" th:title="|#{lastMonth's}#{member}#{top}#{numberOfBooksRead}|"></h1>
 								</div>
 							</div>
 						</div>

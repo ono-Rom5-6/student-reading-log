@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.data.repository.query.Param;
 
-import spring.readinglog.domain.user.model.ClassMember;
+import spring.readinglog.domain.user.model.Member;
 import spring.readinglog.domain.user.model.User;
 
 @Mapper
@@ -16,6 +16,6 @@ public interface UserMapper {
 	
 	public void updatePass(@Param("user") String user, @Param("pass") String pass);
 	
-	public ArrayList<ClassMember> selectClassMemberList();
+	public ArrayList<Member> selectMemberList();
 	
 }

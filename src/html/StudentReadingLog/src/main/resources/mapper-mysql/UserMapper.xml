@@ -14,8 +14,8 @@
 	</resultMap>
 
 	<resultMap
-		type="spring.readinglog.domain.user.model.ClassMember"
-		id="classMember">
+		type="spring.readinglog.domain.user.model.Member"
+		id="member">
 		<id column="id" property="id" />
 		<result column="name" property="name" />
 		<result column="numberOfBooksReadThisMonth"
@@ -48,23 +48,33 @@
 			where user = #{user}
 	</update>
 
-	<select id="selectClassMemberList"
-		resultMap="classMember">
+	<select id="selectMemberList"
+		resultMap="member">
 		select
-			users.id, users.name, count(reading_records.user_id) as
+			users.id, users.name, count(s1.finished_date)  as
 			numberOfBooksReadThisMonth
-		from
+		from(
+			select
+				user_id, finished_date
+			from
+				reading_records
+			where
+				reading_records.finished_date
+			between
+				date_format(curdate(),'%Y-%m-01')
+			and
+				curdate()
+			)as s1
+		right outer join
 			users
-		left join
-			reading_records
 		on
-			users.id = reading_records.user_id
+			s1.user_id = users.id
 		where
-			reading_records.finished_date
-		between
-			date_format(curdate(),'%Y-%m-01')
-		and
-			curdate()
-		group by reading_records.user_id
+			users.authority = "GENERAL"
+		group by
+			users.id
+		order by
+			numberOfBooksReadThisMonth
+			desc
 	</select>
 </mapper>
