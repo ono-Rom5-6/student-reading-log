@@ -9,6 +9,10 @@
 他のユーザーと読了冊数を競いながら、読書メモを記録できるWebアプリをSpringBootを用いて制作しました。  
 教育現場で自分のクラスの学生の読書量を増やしたいといった場面での使用を想定しています。
 
+![Image](https://github.com/user-attachments/assets/3ae5e326-18ea-4e0d-84a3-e1de0bb83713)
+
+![Image](https://github.com/user-attachments/assets/0a473dd8-f794-4dcc-ac73-635661fe34da)
+
 # 学んだこと
 - 今月と先月の読了冊数（自分、平均、トップ）をカウントするものなど特殊なクエリを考えることに苦戦しました。
 - htmlの外部ファイルの参照関係の理解が深まりました。
